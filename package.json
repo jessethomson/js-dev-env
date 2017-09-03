@@ -1,0 +1,59 @@
+{
+  "name": "js-dev-env",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "babel-node buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
+    "open:src": "babel-node buildScripts/srcServer.js",
+    "lint": "esw webpack.config.* src buildScripts",
+    "lint:watch": "npm run lint -- --watch",
+    "security-check": "nsp check",
+    "localtunnel": "lt --port 3000 --subdomain katie",
+    "share": "npm-run-all --parallel open:src localtunnel",
+		"test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.spec.js\"",
+		"test:watch": "npm run test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwt1143/js-dev-env.git"
+  },
+  "author": "Jesse Thomson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jwt1143/js-dev-env/issues"
+  },
+  "homepage": "https://github.com/jwt1143/js-dev-env#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-latest": "^6.24.1",
+    "chai": "^4.1.2",
+    "chalk": "^2.1.0",
+    "cheerio": "^1.0.0-rc.2",
+    "css-loader": "^0.28.7",
+    "csv-loader": "^2.1.1",
+    "eslint": "^4.6.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-watch": "^3.1.2",
+    "express": "^4.15.4",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
+    "jsdom": "^11.2.0",
+    "mocha": "^3.5.0",
+    "npm-run-all": "^4.1.1",
+    "nsp": "^2.7.0",
+    "numeral": "^2.0.6",
+    "open": "0.0.5",
+    "rimraf": "^2.6.1",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-hot-middleware": "^2.18.2",
+    "webpack-md5-hash": "0.0.5",
+    "xml-loader": "^1.2.1"
+  }
+}
